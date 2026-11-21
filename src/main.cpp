@@ -41,7 +41,7 @@ int main() {
             const auto &col = grid[i];
             col->next();
             for (int j = 0; j < y; j++) {
-                mvwprintw(stdscr, j, i, "%c", col->buffer[j].draw());
+                mvwprintw(stdscr, j, i * 2, "%c", col->buffer[j].draw());
             }
         }
         refresh();
@@ -56,8 +56,6 @@ std::unique_ptr<char> gen_random_char() {
         return std::make_unique<char>(' ');
 
     return std::make_unique<char>(characters[letterOrDigit(gen)]);
-
-    // return std::make_unique<char>(dist(rd));
 }
 
 int gen_random_int(const int min, const int max) {
