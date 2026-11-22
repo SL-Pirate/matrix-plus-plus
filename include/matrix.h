@@ -6,7 +6,8 @@
 
 #include <random>
 
-#define DELAY std::chrono::milliseconds(50)
+#define DELAY std::chrono::milliseconds(40)
+
 // minimum length of a character/space sequence
 #define MIN_SEQ_LEN 10
 

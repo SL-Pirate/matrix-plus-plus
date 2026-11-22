@@ -9,11 +9,13 @@ class Cell {
     char i;
 
 public:
+    bool is_head = false;
+
     Cell(char i, bool is_visible);
 
     void set_is_visible(bool visible);
 
     [[nodiscard]] char draw() const;
 
-    bool get_is_visible() const;
+    [[nodiscard]] bool get_is_visible() const;
 };

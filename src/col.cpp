@@ -28,5 +28,9 @@ void Column::next() {
     const int tail = (index - length + height) % height;
     buffer[tail].set_is_visible(false);
     buffer[index].set_is_visible(true);
+    buffer[index].is_head = true;
+    if (index > 0) {
+        buffer[index - 1].is_head = false;
+    }
     index++;
 }

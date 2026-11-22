@@ -28,6 +28,7 @@ int main() {
 
     start_color();
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
+    init_pair(2, COLOR_WHITE, COLOR_BLACK);
     attron(COLOR_PAIR(1));
     int y, x;
     getmaxyx(stdscr, y, x);
@@ -41,6 +42,15 @@ int main() {
             const auto &col = grid[i];
             col->next();
             for (int j = 0; j < y; j++) {
+                auto item = col->buffer[j];
+                if (item.is_head) {
+                    attroff(COLOR_PAIR(1));
+                    attron(COLOR_PAIR(2));
+                } else {
+                    attroff(COLOR_PAIR(2));
+                    attron(COLOR_PAIR(1));
+                }
+
                 mvwprintw(stdscr, j, i * 2, "%c", col->buffer[j].draw());
             }
         }
