@@ -32,18 +32,19 @@ int main() {
     attron(COLOR_PAIR(1));
     int y, x;
     getmaxyx(stdscr, y, x);
-    auto grid = std::vector<std::shared_ptr<Column> >();
+    auto grid = std::vector<std::unique_ptr<Column> >();
     for (int i = 0; i < x; i++) {
-        grid.push_back(std::make_shared<Column>(y));
+        grid.push_back(std::make_unique<Column>(y));
     }
 
     while (true) {
         for (int i = 0; i < x; i++) {
+            if (i % 2 == 1) continue;
+
             const auto &col = grid[i];
             col->next();
             for (int j = 0; j < y; j++) {
-                auto item = col->buffer[j];
-                if (item.is_head) {
+                if (const auto item = col->buffer[j]; item.is_head) {
                     attroff(COLOR_PAIR(1));
                     attron(COLOR_PAIR(2));
                 } else {
@@ -51,7 +52,7 @@ int main() {
                     attron(COLOR_PAIR(1));
                 }
 
-                mvwprintw(stdscr, j, i * 2, "%c", col->buffer[j].draw());
+                mvwprintw(stdscr, j, i, "%c", col->buffer[j].draw());
             }
         }
         refresh();

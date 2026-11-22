@@ -4,13 +4,9 @@
 
 #pragma once
 #include <memory>
-#include <vector>
 #include <random>
 
-#include "col.h"
 #include "matrix.h"
-
-typedef std::vector<Column> Matrix;
 
 static std::uniform_int_distribution<> dist('a', 'z');
 static std::mt19937 gen(rd());
