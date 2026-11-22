@@ -14,7 +14,7 @@ Column::Column(const int height) {
     this->buffer = std::vector<Cell>();
 
     for (int i = 0; i < this->height; i++) {
-        buffer.emplace_back(*gen_random_char(), false);
+        buffer.emplace_back(gen_random_char(), false);
     }
 
     index = gen_random_int(0, height);

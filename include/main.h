@@ -19,6 +19,6 @@ static constexpr char characters[] =
         "~!@#$%^&-=*+\\/?";
 
 
-std::unique_ptr<char> gen_random_char();
+char gen_random_char();
 
 int gen_random_int(int min, int max);

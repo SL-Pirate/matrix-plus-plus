@@ -21,7 +21,7 @@ void Cell::set_is_visible(const bool visible) {
     if (this->is_visible != visible) {
         // generating new characters for new lines
         if (is_visible == false && visible == true) {
-            i = *gen_random_char();
+            i = gen_random_char();
         }
 
         this->is_visible = visible;

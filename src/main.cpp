@@ -34,7 +34,11 @@ int main() {
     getmaxyx(stdscr, y, x);
     auto grid = std::vector<std::unique_ptr<Column> >();
     for (int i = 0; i < x; i++) {
-        grid.push_back(std::make_unique<Column>(y));
+        if (i % 2 == 1) {
+            grid.push_back(nullptr);
+        } else {
+            grid.push_back(std::make_unique<Column>(y));
+        }
     }
 
     while (true) {
@@ -62,14 +66,14 @@ int main() {
     }
 }
 
-std::unique_ptr<char> gen_random_char() {
+char gen_random_char() {
     if (chance(gen) <= 0)
-        return std::make_unique<char>(' ');
+        return ' ';
 
-    return std::make_unique<char>(characters[letterOrDigit(gen)]);
+    return characters[letterOrDigit(gen)];
 }
 
 int gen_random_int(const int min, const int max) {
-    std::uniform_int_distribution<int> distribution(min, max);
+    std::uniform_int_distribution distribution(min, max);
     return distribution(rd);
 }
