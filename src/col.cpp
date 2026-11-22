@@ -22,6 +22,9 @@ Column::Column(const int height) {
 }
 
 void Column::next() {
+    if (index > 0) {
+        buffer[index - 1].is_head = false;
+    }
     if (index == height) {
         index = 0;
     }
@@ -29,8 +32,6 @@ void Column::next() {
     buffer[tail].set_is_visible(false);
     buffer[index].set_is_visible(true);
     buffer[index].is_head = true;
-    if (index > 0) {
-        buffer[index - 1].is_head = false;
-    }
+
     index++;
 }
